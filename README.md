@@ -17,9 +17,7 @@ A simple Node.js application for handling a polling system. Users can vote on po
 - [Endpoints](#endpoints)
   - [POST /api/vote](#post-apivote)
   - [DELETE /api/vote](#delete-apivote)
-- [Running the App](#running-the-app)
 - [Initial Data](#initial-data)
-- [License](#license)
 
 ## Prerequisites
 
@@ -106,3 +104,55 @@ Start the server:
 
 ```bash
 npm start
+```
+
+## Endpoints
+
+#### Example Request to Vote:
+
+**POST** `https://localhost:3000/api/vote`
+
+```json
+{
+    "userId": 1,
+    "vote": "Cork",
+    "poll": 1
+}
+```
+
+#### Example Response:
+```json
+{
+    "message": "Vote submitted successfully.",
+    "votePercentages": [
+        {
+            "vote": "Cork",
+            "percentage": 8,
+            "count": 1
+        },
+        {
+            "vote": "Dublin",
+            "percentage": 92,
+            "count": 12
+        }
+    ]
+}
+```
+
+#### Example Request to Delete Vote:
+
+**DELETE** https://localhost:3000/api/vote
+
+```json
+{
+    "userId": 1,
+    "pollId": 1
+}
+```
+
+#### Example Response:
+```json
+{
+    "message": "Vote deleted successfully."
+}
+```
