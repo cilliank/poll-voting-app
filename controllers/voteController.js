@@ -4,9 +4,16 @@ class VoteController {
     async submitVote(req, res) {
         const { userId, vote, poll } = req.body;
 
+        if (!userId || !vote || !poll) {
+            return res.status(400).json({ message: 'Missing userId, vote, or poll' });
+        }
+
         try {
-            await voteService.submitVote(userId, vote, poll);
-            res.status(201).json({ message: 'Vote submitted successfully.' });
+            const percentages = await voteService.submitVote(userId, vote, poll);
+            res.status(201).json({
+                message: 'Vote submitted successfully.',
+                votePercentages: percentages
+            });
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
@@ -44,10 +51,13 @@ class VoteController {
         }
 
         try {
-            await voteService.deleteVote(userId, pollId);
-            res.status(200).json({ message: 'Vote deleted successfully.' });
+            const percentages = await voteService.deleteVote(userId, pollId);
+            res.status(200).json({
+                message: 'Vote deleted successfully.',
+                votePercentages: percentages
+            });
         } catch (error) {
-            res.status(500).json({ message: 'An error occurred while deleting the vote.' });
+            res.status(400).json({ message: error.message });
         }
     }
 }

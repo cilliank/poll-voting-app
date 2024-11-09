@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-    origin: 'https://decagon-pike-mrd6.squarespace.com',
+    origin: 'https://www.thecyclingwebsite.com',
     optionsSuccessStatus: 200,
 };
 
