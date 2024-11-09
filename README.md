@@ -141,7 +141,7 @@ npm start
 
 #### Example Request to Delete Vote:
 
-**DELETE** https://localhost:3000/api/vote
+**DELETE** `https://localhost:3000/api/vote`
 
 ```json
 {
